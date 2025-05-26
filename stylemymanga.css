@@ -1,25 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Jua&family=Orbitron:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 *{
-    font-family: 'Orbitron';
+    font-family: 'Chakra Petch';
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-header{
+header nav a{
     display: flex;
-    align-items: center;
-    background-color: rgb(120, 197, 238);
-    font-size: 1.5rem;
-    color: rgb(12, 107, 131);
-    height: 3rem;
     text-decoration: none;
     font-weight: bold;
 }
 
 body{
-    background-color: rgb(246, 144, 234);
-    color: rgb(93, 176, 25);
+    background-color:  	#f59a50;
+    color: #fb8064;
+    font-weight: bold;
 }
 
 main{
@@ -30,4 +26,21 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+footer{
+    display: flex;
+    background-color: #f0b03f;
+    height: 4rem;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    font-size: 1.4rem;
+}
+
+footer div p a{
+    font-weight: bold;
+    color: #4b8515;
 }

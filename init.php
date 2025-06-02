@@ -2,7 +2,7 @@
     define('DB_HOST', 'localhost');
     define('DB_USER', 'Alunos');
     define('DB_PASS', 'cefetmg');
-    define('DB_NAME', 'MyMangas');
+    define('DB_NAME', 'AvMangas');
 
     date_default_timezone_set('America/Sao_Paulo');
 

@@ -7,9 +7,9 @@
     $PDO = db_connect();
     $sql = "INSERT INTO Usuário(nome, email, idade) VALUES(:nome, :email, :idade)";
     $stmt = $PDO->prepare($sql);
-    $stmt->bindParam(':nome'. $nome);
-    $stmt->bindParam(':email'. $email);
-    $stmt->bindParam(':idade'. $idade);
+    $stmt->bindParam(':nome', $nome);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':idade', $idade);
     if($stmt->execute()){
         header('Location: exibirUsuarios.php');
     }else{

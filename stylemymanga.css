@@ -6,20 +6,25 @@
     box-sizing: border-box;
 }
 
-header nav a{
+header nav div ul{
     display: flex;
     text-decoration: none;
     font-weight: bold;
+
 }
 
 body{
     background-color:  	#f59a50;
     color: #fb8064;
     font-weight: bold;
+    
 }
 
 main{
-    margin: 12rem;
+    margin-top: 5rem;
+    margin-left: 15rem;
+    margin-right: 15rem;
+    margin-bottom: 5rem;
 }
 
 .container{
@@ -30,7 +35,7 @@ main{
 
 footer{
     display: flex;
-    background-color: #f0b03f;
+    background-color: #f0683f;
     height: 4rem;
     justify-content: center;
     align-items: center;
@@ -43,4 +48,31 @@ footer{
 footer div p a{
     font-weight: bold;
     color: #4b8515;
+}
+
+form{
+    margin: 10rem;
+    padding-top: 1rem;
+    border: 5px solid green;
+    background-color: #ffc37d;
+    border-radius: 2rem;
+    font-size: 2rem;
+    text-decoration: none;
+    padding: 1rem;
+    width: 30rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    display: flex;
+    padding-top: 1rem;
+    border: 2px solid green;
+    background-color: #f0683f;
+    border-radius: 1rem;
+    width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
 }

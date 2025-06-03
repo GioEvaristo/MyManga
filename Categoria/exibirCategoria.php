@@ -3,16 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../assets/logomanga.webp">
+    <link rel="icon" href="../assets/logomanga.webp">
     <title>MyMangas</title>
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../stylemymanga.css" rel="stylesheet">
-
-    </script>
-  </head>
-
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="../bootstrap/js/jquery.min.js"></script>
+    <script src="../bootstrap/js/popper.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+      <script type="text/javascript">
+            $(document).ready(function(){
+                $(function(){
+                    $("#menu").load("../Navbar/navbar.html");
+                });
+            });
+        </script>
+    </head>
   <body>
 
     <header>

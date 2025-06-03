@@ -2,7 +2,7 @@
     require 'init.php';
     $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
     $PDO = db_connect();
-    $sql = "SELECT nome, email. idade FROM Usuários WHERE id = :id";
+    $sql = "SELECT nome, email. idade FROM Usuario WHERE id = :id";
     $stmt = $PDO->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();

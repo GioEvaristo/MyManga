@@ -10,9 +10,9 @@ if (empty($id)) {
 }
 
 $PDO = db_connect();
-$sql = "DELETE FROM Usuario WHERE id_usuario = :id";
+$sql = "DELETE FROM Usuario WHERE id_usuario = :id_usuario";
 $stmt = $PDO->prepare($sql);
-$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->bindParam(':id_usuario', $id, PDO::PARAM_INT);
 
 if ($stmt->execute()) {
     header('Location: exibirUsuario.php');

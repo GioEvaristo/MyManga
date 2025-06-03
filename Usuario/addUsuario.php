@@ -5,7 +5,7 @@
     $idade = $_POST['idade'];
 
     $PDO = db_connect();
-    $sql = "INSERT INTO Usuário(nome, email, idade) VALUES(:nome, :email, :idade)";
+    $sql = "INSERT INTO Usuario(nome, email, idade) VALUES(:nome, :email, :idade)";
     $stmt = $PDO->prepare($sql);
     $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':email', $email);

@@ -19,17 +19,23 @@
             });
         </script>
     </head>
-  <body>
+
+<body>
     <div id="menu"></div>
-    <main role="main">
-   
-    </main>
-
-    <footer>
+    <body>
       <div class="container">
-        <p><a href="#">Voltar ao topo</a> &copy; MyMangas - Alguns dos direitos reservados ao Pedro Liló - 2025</p>
-      </div>
-    </footer>
-
+          <form action="addCategoria.php" method="post">
+          <label for="genero">Gênero: </label><br>
+          <input type="text" id="genero" name="genero" required><br><br>
+          <label for="classif_indicativa">Classificação Indicativa: </label><br>
+          <input type="text" id="classif_indicativa" name="classif_indicativa" required><br><br>
+          <input type="submit" value="CADASTRAR">
+    </form>
+    </div>
   </body>
+  <footer>
+    <div class="container">
+        <p><a href="#">Voltar ao topo</a> &copy; MyMangas - Alguns dos direitos reservados ao Pedro Liló - 2025</p>
+    </div>
+  </footer>
 </html>

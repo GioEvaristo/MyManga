@@ -1,7 +1,7 @@
 <?php
     require_once '../init.php';
     $PDO = db_connect();
-    $sql = "SELECT id_usuario, nome, email, idade FROM Usuario ORDER BY id_usuario ASC";
+    $sql = "SELECT id_manga, editora, titulo, autor FROM Manga ORDER BY id_manga ASC";
     $stmt = $PDO->prepare($sql);
     $stmt->execute();
 ?>
@@ -30,29 +30,29 @@
  <div id="menu"></div>
     <main role="main">
       <section class="jumbotron text-center">
-        <h2>Usuários cadastrados</h2>
+        <h2>Mangás cadastrados</h2>
       </section>
     <div class="container">
     <table class="table table-ordered table-hover" style="background-color: #ffc37d; font-size: 1.5rem; height: 6rem; width: 320rem;">
         <thead>
             <tr>
                 <th style="text-align:center">ID</th>
-                <th style="text-align:center">Nome</th>
-                <th style="text-align:center">Email</th>
-                <th style="text-align:center">Idade</th>
+                <th style="text-align:center">Editora</th>
+                <th style="text-align:center">Título</th>
+                <th style="text-align:center">Autor</th>
                 <th style="text-align:center" colspan="2">Ações</th>
             </tr>
         </thead>
         <tbody>
             <?php while ($user = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
                 <tr>
-                    <td style="text-align:center"><?php echo $user['id_usuario'] ?></td>
-                    <td style="text-align:center"><?php echo $user['nome'] ?></td>
-                    <td style="text-align:center"><?php echo $user['email'] ?></td>
-                    <td style="text-align:center"><?php echo $user['idade'] ?></td>
+                    <td style="text-align:center"><?php echo $user['id_manga'] ?></td>
+                    <td style="text-align:center"><?php echo $user['editora'] ?></td>
+                    <td style="text-align:center"><?php echo $user['titulo'] ?></td>
+                    <td style="text-align:center"><?php echo $user['autor'] ?></td>
                     <td style="text-align:center">
-                        <a href="formEditUsuario.php?id_usuario=<?php echo $user['id_usuario'] ?>" class="btn btn-primary" >Editar</a>
-                        <a href="deleteUsuario.php?id_usuario=<?php echo $user['id_usuario'] ?>" onclick="return confirm('Deseja mesmo deletar?')" class="btn btn-danger">Deletar</a>
+                        <a href="formEditManga.php?id_manga=<?php echo $user['id_manga'] ?>" class="btn btn-primary" >Editar</a>
+                        <a href="deleteManga.php?id_manga=<?php echo $user['id_manga'] ?>" onclick="return confirm('Deseja mesmo deletar?')" class="btn btn-danger">Deletar</a>
                     </td>
                 </tr>
                 <?php endwhile; ?>

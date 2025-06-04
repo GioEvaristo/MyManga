@@ -1,17 +1,17 @@
 <?php
     require_once '../init.php';
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $idade = $_POST['idade'];
+    $editora = $_POST['editora'];
+    $titulo = $_POST['titulo'];
+    $autor = $_POST['autor'];
 
     $PDO = db_connect();
-    $sql = "INSERT INTO Usuario(nome, email, idade) VALUES(:nome, :email, :idade)";
+    $sql = "INSERT INTO Manga(editora, titulo, autor) VALUES(:editora, :titulo, :autor)";
     $stmt = $PDO->prepare($sql);
-    $stmt->bindParam(':nome', $nome);
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':idade', $idade);
+    $stmt->bindParam(':editora', $editora);
+    $stmt->bindParam(':titulo', $titulo);
+    $stmt->bindParam(':autor', $autor);
     if($stmt->execute()){
-        header('Location: exibirUsuarios.php');
+        header('Location: exibirManga.php');
     }else{
         echo "Erro ao cadastrar";
         print_r($stmt->errorInfo());

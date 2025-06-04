@@ -43,7 +43,6 @@
             <p>Editar Usuário</p>
             <input type="hidden" name="id_usuario" value="<?php echo $id_usuario ?>">
             <div class="row">
-            <form action="addUsuario.php" method="post">
                 <label for="nome">Nome: </label><br>
                 <input type="text" id="nome" name="nome" value="<?php echo $user['nome'] ?>"required><br><br>
                 <label for="email">Email: </label><br>

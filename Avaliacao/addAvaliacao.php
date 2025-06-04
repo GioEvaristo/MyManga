@@ -1,38 +1,19 @@
-<!doctype html>
-<html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../assets/logomanga.webp">
-    <title>MyMangas</title>
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../stylemymanga.css" rel="stylesheet">
+<?php
+    require_once '../init.php';
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $idade = $_POST['idade'];
 
-    </script>
-  </head>
-
-  <body>
-
-    <header>
-        <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #f0b03f;">
-            <img src="../assets/myMangas.png" alt="MyMangas" width="200" height="100">
-            <a class="navbar-brand" href="./Avaliacao/addAvaliacao.php">Avaliar</a>
-            <a class="navbar-brand" href="./Manga/addManga.php">Adicionar Mangá</a>
-            <a class="navbar-brand" href="./Categoria/exibirCategoria.php">Categorias</a>
-          </nav>
-    </header>
-
-    <main role="main">
-   
-    </main>
-
-    <footer>
-      <div class="container">
-        <p><a href="#">Voltar ao topo</a> &copy; MyMangas - Alguns dos direitos reservados ao Pedro Liló - 2025</p>
-      </div>
-    </footer>
-
-  </body>
-</html>
+    $PDO = db_connect();
+    $sql = "INSERT INTO Usuario(nome, email, idade) VALUES(:nome, :email, :idade)";
+    $stmt = $PDO->prepare($sql);
+    $stmt->bindParam(':nome', $nome);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':idade', $idade);
+    if($stmt->execute()){
+        header('Location: exibirUsuarios.php');
+    }else{
+        echo "Erro ao cadastrar";
+        print_r($stmt->errorInfo());
+    }
+?>

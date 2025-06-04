@@ -1,23 +1,19 @@
 <?php
-require_once '../init.php';
+    require_once '../init.php';
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $idade = $_POST['idade'];
 
-$conn = conectar();
-$id = isset($_GET['id_usuario']) ? $_GET['id_usuario'] : null;
-
-if (empty($id)) {
-    echo "ID não informado";
-    exit;
-}
-
-$PDO = db_connect();
-$sql = "DELETE FROM Usuario WHERE id_usuario = :id_usuario";
-$stmt = $PDO->prepare($sql);
-$stmt->bindParam(':id_usuario', $id, PDO::PARAM_INT);
-
-if ($stmt->execute()) {
-    header('Location: exibirUsuario.php');
-} else {
-    echo "Erro ao remover";
-    print_r($stmt->errorInfo());
-}
+    $PDO = db_connect();
+    $sql = "INSERT INTO Usuario(nome, email, idade) VALUES(:nome, :email, :idade)";
+    $stmt = $PDO->prepare($sql);
+    $stmt->bindParam(':nome', $nome);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':idade', $idade);
+    if($stmt->execute()){
+        header('Location: exibirUsuarios.php');
+    }else{
+        echo "Erro ao cadastrar";
+        print_r($stmt->errorInfo());
+    }
 ?>

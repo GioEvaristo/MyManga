@@ -1,10 +1,10 @@
 <?php
-    require 'init.php';
-    $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
+    require '../init.php';
+    $id_usuario = isset($_GET['id_usuario']) ? (int) $_GET['id_usuario'] : null;
     $PDO = db_connect();
-    $sql = "SELECT nome, email. idade FROM Usuario WHERE id = :id";
+    $sql = "SELECT nome, email, idade FROM Usuario WHERE id_usuario = :id_usuario";
     $stmt = $PDO->prepare($sql);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     if(!is_array($user)){
@@ -12,55 +12,54 @@
     }
 ?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/assets/logomanga.webp">
+    <link rel="icon" href="../assets/logomanga.webp">
     <title>MyMangas</title>
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../stylemymanga.css" rel="stylesheet">
-</head>
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="../bootstrap/js/jquery.min.js"></script>
+    <script src="../bootstrap/js/popper.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+      <script type="text/javascript">
+            $(document).ready(function(){
+                $(function(){
+                    $("#menu").load("../Navbar/navbar.html");
+                });
+            });
+        </script>
+    </head>
 <body>
+    <div id="menu"></div>
+    
     <div class="container">
-        <div class="jumbotron text-center">
-            <h4>Editar Usuario</h4>
+        
         </div>
         <form action="editUsuario.php" method="post">
-            <input type="hidden" name="id" value="<?php echo $id ?>">
+            <p>Editar Usuário</p>
+            <input type="hidden" name="id_usuario" value="<?php echo $id_usuario ?>">
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="name">Nome: </label>
-                        <input type="text" class="form-control col-sm" name="nome" value="<?php echo $user['nome'] ?>" required>
-                    </div>
-                </div>
+            <form action="addUsuario.php" method="post">
+                <label for="nome">Nome: </label><br>
+                <input type="text" id="nome" name="nome" value="<?php echo $user['nome'] ?>"required><br><br>
+                <label for="email">Email: </label><br>
+                <input type="email" id="email" name="email" value="<?php echo $user['email'] ?>"required><br><br>
+                <label for="idade">Idade: </label><br>
+                <input type="number" id="idade" name="idade" value="<?php echo $user['idade'] ?>"required><br><br>
+            <input type="submit" value="CADASTRAR">
+            </form>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="email">Email: </label>
-                        <input type="text" class="form-control col-sm" name="email" value="<?php echo $user['email'] ?>" required>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="idade">Idade: </label>
-                        <input type="integer" class="form-control col-sm" name="idade" value="<?php echo $user['idade'] ?>" required>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Atualizar dados</button>
-            </div>
-        </form>
-
+        
     </div>
     
 </body>
+<footer>
+    <div class="container">
+        <p><a href="#">Voltar ao topo</a> &copy; MyMangas - Alguns dos direitos reservados ao Pedro Liló - 2025</p>
+    </div>
+  </footer>
 </html>

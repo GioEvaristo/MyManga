@@ -25,7 +25,7 @@
     <body>
       <div class="container">
           <form action="addManga.php" method="post">
-          <label for="titulo">Titulo: </label><br>
+          <label for="titulo">Título: </label><br>
           <input type="text" id="titulo" name="titulo" required><br><br>
           <label for="editora">Editora: </label><br>
           <input type="text" id="editora" name="editora" required><br><br>

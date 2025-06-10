@@ -1,9 +1,13 @@
 <?php
     require_once '../init.php';
     $PDO = db_connect();
-    $sql = "SELECT id_manga, editora, titulo, autor, Categoria_id_categoria FROM Manga ORDER BY id_manga ASC";
+    $sql = "SELECT M.id_manga, M.editora, M.titulo, M.autor, M.Categoria_id_categoria, C.genero 
+    FROM Manga AS M 
+    INNER JOIN Categoria AS C ON C.id_categoria = M.Categoria_id_categoria 
+    ORDER BY M.id_manga ASC";
     $stmt = $PDO->prepare($sql);
     $stmt->execute();
+
 ?>
 
 <!doctype html>
@@ -40,7 +44,6 @@
                 <th style="text-align:center">Editora</th>
                 <th style="text-align:center">Título</th>
                 <th style="text-align:center">Autor</th>
-                <th style="text-align:center">ID CAT</th>
                 <th style="text-align:center">Gênero</th>
                 <th style="text-align:center" colspan="2">Ações</th>
             </tr>
@@ -52,7 +55,6 @@
                     <td style="text-align:center"><?php echo $user['editora'] ?></td>
                     <td style="text-align:center"><?php echo $user['titulo'] ?></td>
                     <td style="text-align:center"><?php echo $user['autor'] ?></td>
-                    <td style="text-align:center"><?php echo $user['Categoria_id_categoria'] ?></td>
                     <td style="text-align:center"><?php echo $user['genero'] ?></td>
                     <td style="text-align:center">
                         <a href="formEditManga.php?id_manga=<?php echo $user['id_manga'] ?>" class="btn btn-primary" >Editar</a>

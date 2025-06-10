@@ -43,9 +43,9 @@ $stmt->execute();
           <input type="text" id="editora" name="editora" required><br><br>
           <label for="autor">Autor: </label><br>
           <input type="text" id="autor" name="autor" required><br><br>
-          <select class="form-control" name="Categoria_id_categoria" id="Categoria_id_categoria" required>
+          <select class="form-control" name="id_categoria" id="id_categoria" required>
             <?php while ($dados = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
-              <option value="<?php echo $dados['genero']; ?>"><?php echo $dados['genero']; ?></option>
+              <option value="<?php echo $dados['id_categoria']; ?>"><?php echo $dados['genero']; ?></option>
             <?php endwhile; ?>
         </select>
           <input type="submit" value="CADASTRAR">

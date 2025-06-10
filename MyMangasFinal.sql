@@ -39,6 +39,20 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Categoria` (
   PRIMARY KEY (`id_categoria`))
 ENGINE = InnoDB;
 
+--
+-- Despejando dados para a tabela `Categoria`
+--
+
+INSERT INTO `Categoria` (`id_categoria`, `genero`, `classif_indicativa`) VALUES
+(1, 'Terror', '16'),
+(2, 'Shounen', '12'),
+(3, 'Shoujo', '12'),
+(4, 'Seinen', '18'),
+(5, 'Josei', '16'),
+(6, 'Mistério', '14'),
+(7, 'Romance', '14'),
+(8, 'Drama', '12');
+
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Manga`

@@ -1,7 +1,7 @@
 <?php
     require_once '../init.php';
     $PDO = db_connect();
-    $sql = "SELECT id_manga, editora, titulo, autor FROM Manga ORDER BY id_manga ASC";
+    $sql = "SELECT id_manga, editora, titulo, autor, Categoria_id_categoria FROM Manga ORDER BY id_manga ASC";
     $stmt = $PDO->prepare($sql);
     $stmt->execute();
 ?>
@@ -40,6 +40,8 @@
                 <th style="text-align:center">Editora</th>
                 <th style="text-align:center">Título</th>
                 <th style="text-align:center">Autor</th>
+                <th style="text-align:center">ID CAT</th>
+                <th style="text-align:center">Gênero</th>
                 <th style="text-align:center" colspan="2">Ações</th>
             </tr>
         </thead>
@@ -50,6 +52,8 @@
                     <td style="text-align:center"><?php echo $user['editora'] ?></td>
                     <td style="text-align:center"><?php echo $user['titulo'] ?></td>
                     <td style="text-align:center"><?php echo $user['autor'] ?></td>
+                    <td style="text-align:center"><?php echo $user['Categoria_id_categoria'] ?></td>
+                    <td style="text-align:center"><?php echo $user['genero'] ?></td>
                     <td style="text-align:center">
                         <a href="formEditManga.php?id_manga=<?php echo $user['id_manga'] ?>" class="btn btn-primary" >Editar</a>
                         <a href="deleteManga.php?id_manga=<?php echo $user['id_manga'] ?>" onclick="return confirm('Deseja mesmo deletar?')" class="btn btn-danger">Deletar</a>

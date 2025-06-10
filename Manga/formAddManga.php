@@ -1,3 +1,15 @@
+<?php
+require '../init.php';
+
+$id_manga = isset($_GET['id_manga']) ? (int) $_GET['id_manga'] : null;
+
+$PDO = db_connect();
+$sql = "SELECT id_categoria, genero FROM Categoria ORDER BY id_categoria ASC";
+$stmt = $PDO->prepare($sql);
+$stmt->execute();
+?>
+
+
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -31,6 +43,11 @@
           <input type="text" id="editora" name="editora" required><br><br>
           <label for="autor">Autor: </label><br>
           <input type="text" id="autor" name="autor" required><br><br>
+          <select class="form-control" name="Categoria_id_categoria" id="Categoria_id_categoria" required>
+            <?php while ($dados = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
+              <option value="<?php echo $dados['Categoria_id_categoria']; ?>"><?php echo $dados['Categoria_id_categoria']; ?></option>
+            <?php endwhile; ?>
+        </select>
           <input type="submit" value="CADASTRAR">
     </form>
     </div>

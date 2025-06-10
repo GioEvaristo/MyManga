@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 03/06/2025 às 21:11
+-- Tempo de geração: 10/06/2025 às 22:55
 -- Versão do servidor: 8.0.41-0ubuntu0.22.04.1
 -- Versão do PHP: 8.3.16
 
@@ -47,6 +47,20 @@ CREATE TABLE `Categoria` (
   `classif_indicativa` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Despejando dados para a tabela `Categoria`
+--
+
+INSERT INTO `Categoria` (`id_categoria`, `genero`, `classif_indicativa`) VALUES
+(1, 'Terror', '16'),
+(2, 'Shounen', '12'),
+(3, 'Shoujo', '12'),
+(4, 'Seinen', '18'),
+(5, 'Josei', '16'),
+(6, 'Mistério', '14'),
+(7, 'Romance', '14'),
+(8, 'Drama', '12');
+
 -- --------------------------------------------------------
 
 --
@@ -57,19 +71,17 @@ CREATE TABLE `Manga` (
   `id_manga` int NOT NULL,
   `editora` varchar(255) NOT NULL,
   `titulo` varchar(255) NOT NULL,
-  `autor` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `Manga_has_Categoria`
---
-
-CREATE TABLE `Manga_has_Categoria` (
-  `Manga_id_manga` int NOT NULL,
+  `autor` varchar(255) NOT NULL,
   `Categoria_id_categoria` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Despejando dados para a tabela `Manga`
+--
+
+INSERT INTO `Manga` (`id_manga`, `editora`, `titulo`, `autor`, `Categoria_id_categoria`) VALUES
+(3, 'JBC', 'Bakuman', 'Lilo', 6),
+(4, 'JBC', 'Gen pés descalços', 'Liló', 6);
 
 -- --------------------------------------------------------
 
@@ -80,16 +92,9 @@ CREATE TABLE `Manga_has_Categoria` (
 CREATE TABLE `Usuario` (
   `id_usuario` int NOT NULL,
   `nome` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `idade` int NOT NULL
+  `idade` int NOT NULL,
+  `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Despejando dados para a tabela `Usuario`
---
-
-INSERT INTO `Usuario` (`id_usuario`, `nome`, `email`, `idade`) VALUES
-(1, 'govanna', 'giovanna@gmail.com', 19);
 
 --
 -- Índices para tabelas despejadas
@@ -100,7 +105,7 @@ INSERT INTO `Usuario` (`id_usuario`, `nome`, `email`, `idade`) VALUES
 --
 ALTER TABLE `Avaliacao`
   ADD PRIMARY KEY (`id_avaliacao`),
-  ADD KEY `fk_Avaliacao_Usuario_idx` (`Usuario_id_usuario`),
+  ADD KEY `fk_Avaliacao_Usuario1_idx` (`Usuario_id_usuario`),
   ADD KEY `fk_Avaliacao_Manga1_idx` (`Manga_id_manga`);
 
 --
@@ -113,15 +118,8 @@ ALTER TABLE `Categoria`
 -- Índices de tabela `Manga`
 --
 ALTER TABLE `Manga`
-  ADD PRIMARY KEY (`id_manga`);
-
---
--- Índices de tabela `Manga_has_Categoria`
---
-ALTER TABLE `Manga_has_Categoria`
-  ADD PRIMARY KEY (`Manga_id_manga`,`Categoria_id_categoria`),
-  ADD KEY `fk_Manga_has_Categoria_Categoria1_idx` (`Categoria_id_categoria`),
-  ADD KEY `fk_Manga_has_Categoria_Manga1_idx` (`Manga_id_manga`);
+  ADD PRIMARY KEY (`id_manga`),
+  ADD KEY `fk_Manga_Categoria_idx` (`Categoria_id_categoria`);
 
 --
 -- Índices de tabela `Usuario`
@@ -143,13 +141,13 @@ ALTER TABLE `Avaliacao`
 -- AUTO_INCREMENT de tabela `Categoria`
 --
 ALTER TABLE `Categoria`
-  MODIFY `id_categoria` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `Manga`
 --
 ALTER TABLE `Manga`
-  MODIFY `id_manga` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_manga` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `Usuario`
@@ -166,14 +164,13 @@ ALTER TABLE `Usuario`
 --
 ALTER TABLE `Avaliacao`
   ADD CONSTRAINT `fk_Avaliacao_Manga1` FOREIGN KEY (`Manga_id_manga`) REFERENCES `Manga` (`id_manga`),
-  ADD CONSTRAINT `fk_Avaliacao_Usuario` FOREIGN KEY (`Usuario_id_usuario`) REFERENCES `Usuario` (`id_usuario`);
+  ADD CONSTRAINT `fk_Avaliacao_Usuario1` FOREIGN KEY (`Usuario_id_usuario`) REFERENCES `Usuario` (`id_usuario`);
 
 --
--- Restrições para tabelas `Manga_has_Categoria`
+-- Restrições para tabelas `Manga`
 --
-ALTER TABLE `Manga_has_Categoria`
-  ADD CONSTRAINT `fk_Manga_has_Categoria_Categoria1` FOREIGN KEY (`Categoria_id_categoria`) REFERENCES `Categoria` (`id_categoria`),
-  ADD CONSTRAINT `fk_Manga_has_Categoria_Manga1` FOREIGN KEY (`Manga_id_manga`) REFERENCES `Manga` (`id_manga`);
+ALTER TABLE `Manga`
+  ADD CONSTRAINT `fk_Manga_Categoria` FOREIGN KEY (`Categoria_id_categoria`) REFERENCES `Categoria` (`id_categoria`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

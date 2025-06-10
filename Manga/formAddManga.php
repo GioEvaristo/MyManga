@@ -1,8 +1,6 @@
 <?php
 require '../init.php';
 
-$id_manga = isset($_GET['id_manga']) ? (int) $_GET['id_manga'] : null;
-
 $PDO = db_connect();
 $sql = "SELECT id_categoria, genero FROM Categoria ORDER BY id_categoria ASC";
 $stmt = $PDO->prepare($sql);

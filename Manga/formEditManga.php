@@ -11,7 +11,7 @@
     $stmt->execute();
     $dados = $stmt->fetch(PDO::FETCH_ASSOC);
     if(!is_array($dados)){
-        header('Loaction: exibirMangas.php');
+        header('Loaction: exibirManga.php');
     }
 
     $sql_categoria = "SELECT id_categoria, genero FROM Categoria";
@@ -36,7 +36,7 @@
         $stmt_update->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
 
         if ($stmt_update->execute()) {
-            header('Location: exibirMangas.php');
+            header('Location: exibirManga.php');
             exit;
         } else {
             echo "Erro.";

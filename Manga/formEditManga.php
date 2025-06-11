@@ -11,38 +11,17 @@
     $stmt->execute();
     $dados = $stmt->fetch(PDO::FETCH_ASSOC);
     if(!is_array($dados)){
-        header('Loaction: exibirManga.php');
+        header('Location: exibirManga.php');
     }
 
     $sql_categoria = "SELECT id_categoria, genero FROM Categoria";
     $stmt_categoria = $PDO->prepare($sql_categoria);
     $stmt_categoria->execute();
     $categoria = $stmt_categoria->fetchAll(PDO::FETCH_ASSOC);
-
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $titulo = $_POST['titulo'];
-        $editora = $_POST['editora'];
-        $autor = $_POST['autor'];
-        $id_categoria = $_POST['id_categoria'];
-        $id_manga = $_POST['id_manga'];
-
-        $update_sql = "UPDATE Manga SET titulo = :titulo, editora = :editora, autor = :autor, Categoria_id_categoria = :id_categoria WHERE id_manga = :id_manga";
-        $stmt_update = $PDO->prepare($update_sql);
-        $stmt_update->bindParam(':titulo', $titulo, PDO::PARAM_STR);
-        $stmt_update->bindParam(':editora', $editora, PDO::PARAM_STR);
-        $stmt_update->bindParam(':autor', $autor, PDO::PARAM_STR);
-        $stmt_update->bindParam(':id_categoria', $id_categoria, PDO::PARAM_INT);
-        $stmt_update->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
-
-        if ($stmt_update->execute()) {
-            header('Location: exibirManga.php');
-            exit;
-        } else {
-            echo "Erro.";
-        }
+    if (!is_array($categoria)) {
+        header('Location: exibirManga.php');
+        exit;
     }
-
 ?>
 
 <!doctype html>
@@ -73,7 +52,6 @@
         
         </div>
         <form action="editManga.php" method="post">
-            <p>Editar Mangá</p>
             <input type="hidden" name="id_manga" value="<?php echo $id_manga ?>">
             <div class="row">
                 <label for="titulo">Título: </label><br>
@@ -82,8 +60,8 @@
                 <input type="text" id="editora" name="editora" value="<?php echo $dados['editora'] ?>"required><br><br>
                 <label for="autor">Autor: </label><br>
                 <input type="text" id="autor" name="autor" value="<?php echo $dados['autor'] ?>"required><br><br>
-                <label for="id_categoria">Categoria: </label><br>
-                <select class="form-control" name="id_categoria" id="id_categoria" required>
+                <label for="id_categoria">Gênero: </label><br>
+                <select name="id_categoria" id="id_categoria" required>
                     <?php foreach ($categoria as $cat): ?>
                         <option value="<?php echo $cat['id_categoria']; ?>"
                             <?php if ($cat['id_categoria'] == $dados['Categoria_id_categoria']) echo 'selected'; ?>>
@@ -91,7 +69,7 @@
                         </option>
                     <?php endforeach; ?>
                 </select><br><br>
-            <input type="submit" value="SALVAR ALTERAÇÕES">
+            <input class="submit" type="submit" value="SALVAR ALTERAÇÕES">
             </form>
             </div>
     </div>

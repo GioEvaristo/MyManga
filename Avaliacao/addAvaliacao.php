@@ -14,14 +14,14 @@
     }
 
     $PDO = db_connect();
-    $sql = "INSERT INTO Avaliacao (titulo, descricao, Usuario_id_usuario, Manga_id_manga) VALUES(:editora, :titulo, :autor, :id_categoria)";
+    $sql = "INSERT INTO Avaliacao (titulo, descricao, Usuario_id_usuario, Manga_id_manga) VALUES(:titulo, :descricao, :id_usuario, :id_manga)";
     $stmt = $PDO->prepare($sql);
-    $stmt->bindParam(':editora', $editora);
     $stmt->bindParam(':titulo', $titulo);
-    $stmt->bindParam(':autor', $autor);
-    $stmt->bindParam(':id_categoria', $id_categoria, PDO::PARAM_INT);
+    $stmt->bindParam(':descricao', $descricao);
+    $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+    $stmt->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
     if($stmt->execute()){
-        header('Location: exibirManga.php');
+        header('Location: exibirAvaliacao.php');
     }else{
         echo "Erro ao cadastrar";
         print_r($stmt->errorInfo());

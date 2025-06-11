@@ -17,7 +17,6 @@ body{
     background-color:  	#f59a50;
     color: #fb8064;
     font-weight: bold;
-    
 }
 
 main{
@@ -73,6 +72,38 @@ input{
     background-color: #f0683f;
     border-radius: 1rem;
     width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+select{
+    display: flex;
+    padding: 1rem;
+    border: 2px solid green;
+    background-color: #f0683f;
+    border-radius: 1rem;
+    width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.submit{
+    display: flex;
+    font-size: 1.6rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border: 2px solid #f0683f;
+    background-color: green;
+    border-radius: 2rem;
+    width: 20rem;
+    height: 5rem;
     margin-left: auto;
     margin-right: auto;
 }

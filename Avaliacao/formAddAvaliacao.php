@@ -1,3 +1,16 @@
+<?php
+require '../init.php';
+
+  $PDO = db_connect();
+  $sqlUsuarios = "SELECT id_usuario, nome FROM Usuario";
+  $stmtUsuarios = $PDO->prepare($sqlUsuarios);
+  $stmtUsuarios->execute();
+  $sqlMangas = "SELECT id_manga, titulo FROM Manga";
+  $stmtMangas = $PDO->prepare($sqlMangas);
+  $stmtMangas->execute();
+?>
+
+
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -19,18 +32,30 @@
             });
         </script>
     </head>
-
 <body>
-    <div id="menu"></div>
-    <body>
-      <div class="container">
-          <form action="addAvaliacao.php" method="post">
-          <label for="titulo">Título: </label><br>
-          <input type="text" id="titulo" name="titulo" required><br><br>
-          <label for="descricao">Descrição: </label><br>
-          <input type="text" id="descricao" name="descricao" required><br><br>
-          <input type="submit" value="CADASTRAR">
-    </form>
+    <div id="menu">
+      
+    </div>
+    <div class="container">
+      <form action="addAvaliacao.php" method="post">
+        <label for="usuario">Usuário: </label>
+        <select name="id_usuario" id="id_usuario" required>
+          <?php while ($usuario = $stmtUsuarios->fetch(PDO::FETCH_ASSOC)): ?>
+            <option value="<?php echo $usuario['id_usuario']; ?>"><?php echo $usuario['nome']; ?></option>
+          <?php endwhile; ?>
+        </select>
+        <label for="titulo">Título: </label>
+        <input type="text" id="titulo" name="titulo" required>
+        <label for="descricao">Descrição: </label>
+        <input type="text" id="descricao" name="descricao" required>
+        <label for="manga">Mangá: </label>
+        <select name="id_manga" id="id_manga" required>
+          <?php while ($manga = $stmtMangas->fetch(PDO::FETCH_ASSOC)): ?>
+            <option value="<?php echo $manga['id_manga']; ?>"><?php echo $manga['titulo']; ?></option>
+          <?php endwhile; ?>
+        </select><br>
+        <input class="submit" type="submit" value="CADASTRAR">
+      </form>
     </div>
   </body>
   <footer>

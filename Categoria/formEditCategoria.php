@@ -40,14 +40,13 @@
         
         </div>
         <form action="editCategoria.php" method="post">
-            <p>Editar Categoria</p>
             <input type="hidden" name="id_categoria" value="<?php echo $id_categoria ?>">
             <div class="row">
                 <label for="genero">Gênero: </label><br>
                 <input type="text" id="genero" name="genero" value="<?php echo $categoria['genero'] ?>"required><br><br>
                 <label for="classif_indicativa">Classificação Indicativa: </label><br>
                 <input type="text" id="classif_indicativa" name="classif_indicativa" value="<?php echo $categoria['classif_indicativa'] ?>"required><br><br>
-                <input type="submit" value="CADASTRAR">
+                <input class="submit" type="submit" value="SALVAR ALTERAÇÕES">
             </form>
             </div>
         

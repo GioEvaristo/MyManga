@@ -49,7 +49,7 @@
                 <input type="email" id="email" name="email" value="<?php echo $user['email'] ?>"required><br><br>
                 <label for="idade">Idade: </label><br>
                 <input type="number" id="idade" name="idade" value="<?php echo $user['idade'] ?>"required><br><br>
-            <input type="submit" value="CADASTRAR">
+                <input class="submit" type="submit" value="SALVAR ALTERAÇÕES">
             </form>
             </div>
         

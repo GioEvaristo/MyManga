@@ -1,14 +1,15 @@
 <?php
 require_once '../init.php';
-$PDO = db_connect();
-$sql = "SELECT id_usuario, nome, email, idade FROM Usuario ORDER BY id_usuario ASC";
-$stmt = $PDO->prepare($sql);
-$stmt->execute();
+  $PDO = db_connect();
+  $sql = "SELECT A.id_avaliacao, A.titulo AS titulo_avaliacao, A.descricao, A.Usuario_id_usuario, A.Manga_id_manga, U.nome, M.titulo AS titulo_manga 
+    FROM Avaliacao AS A INNER JOIN Usuario AS U ON U.id_usuario = A.Usuario_id_usuario 
+    INNER JOIN Manga AS M ON M.id_manga = A.Manga_id_manga";
+  $stmt = $PDO->prepare($sql);
+  $stmt->execute();
 ?>
 
 <!doctype html>
 <html lang="pt-br">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,48 +30,46 @@ $stmt->execute();
   </script>
 </head>
 <div id="menu"></div>
-<main role="main">
-  <section class="jumbotron text-center">
-    <h2>Usuários cadastrados</h2>
-  </section>
-  <div class="container">
-    <table class="table table-ordered table-hover"
-      style="background-color: #ffc37d; font-size: 1.5rem; height: 6rem; width: 320rem;">
-      <thead>
-        <tr>
-          <th style="text-align:center">ID</th>
-          <th style="text-align:center">Nome</th>
-          <th style="text-align:center">Email</th>
-          <th style="text-align:center">Idade</th>
-          <th style="text-align:center" colspan="2">Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php while ($user = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
-          <tr>
-            <td style="text-align:center"><?php echo $user['id_usuario'] ?></td>
-            <td style="text-align:center"><?php echo $user['nome'] ?></td>
-            <td style="text-align:center"><?php echo $user['email'] ?></td>
-            <td style="text-align:center"><?php echo $user['idade'] ?></td>
-            <td style="text-align:center">
-              <a href="formEditUsuario.php?id_usuario=<?php echo $user['id_usuario'] ?>"
-                class="btn btn-primary">Editar</a>
-              <a href="deleteUsuario.php?id_usuario=<?php echo $user['id_usuario'] ?>"
-                onclick="return confirm('Deseja mesmo deletar?')" class="btn btn-danger">Deletar</a>
-            </td>
-          </tr>
-        <?php endwhile; ?>
-      </tbody>
+    <main role="main">
+      <section class="jumbotron text-center">
+        <h2>Avaliações feitas</h2>
+      </section>
+    <div class="container">
+    <table class="table table-ordered table-hover" style="background-color: #ffc37d; font-size: 1.5rem; height: 6rem; width: 320rem;">
+        <thead>
+            <tr>
+                <th style="text-align:center">ID</th>
+                <th style="text-align:center">Usuário</th>
+                <th style="text-align:center">Título</th>
+                <th style="text-align:center">Descrição</th>
+                <th style="text-align:center">Mangá</th>
+                <th style="text-align:center" colspan="2">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while ($avaliacao = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
+                <tr>
+                    <td style="text-align:center"><?php echo $avaliacao['id_avaliacao'] ?></td>
+                    <td style="text-align:center"><?php echo $avaliacao['nome'] ?></td>
+                    <td style="text-align:center"><?php echo $avaliacao['titulo_avaliacao'] ?></td>
+                    <td style="text-align:center"><?php echo $avaliacao['descricao'] ?></td>
+                    <td style="text-align:center"><?php echo $avaliacao['titulo_manga'] ?></td>
+                    <td style="text-align:center">
+                        <a href="formEditAvaliacao.php?id_avaliacao=<?php echo $avaliacao['id_avaliacao'] ?>" class="btn btn-primary" >Editar</a>
+                        <a href="deleteAvaliacao.php?id_avaliacao=<?php echo $avaliacao['id_avaliacao'] ?>" onclick="return confirm('Deseja mesmo deletar?')" class="btn btn-danger">Deletar</a>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+        </tbody>
     </table>
 
-  </div>
-</main>
-<footer>
-  <div class="container">
-    <p><a href="#">Voltar ao topo</a> &copy; MyMangas - Alguns dos direitos reservados ao Pedro Liló - 2025</p>
-  </div>
-</footer>
+    </div>
+    </main>
+    <footer>
+      <div class="container">
+          <p><a href="#">Voltar ao topo</a> &copy; MyMangas - Alguns dos direitos reservados ao Pedro Liló - 2025</p>
+      </div>
+    </footer>
 
-</body>
-
+  </body>
 </html>
